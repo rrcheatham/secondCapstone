@@ -1,0 +1,63 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D7D7D7;
+}
+
+#logo {
+    width: 200px;
+    height: 97px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+nav p {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 20px 10px 0px 0px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+ #login-form {
+     max-width: 400px;
+     display: flex;
+     flex-direction: column;
+     background-color: whitesmoke;
+     padding: 40px 40px 60px 40px;
+     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+     margin-top: 20px;
+     margin-bottom: 20px;
+ }
+
+ #sign-up-links {
+     margin-top: 20px;
+ }
+
+ label,
+ #submit,
+ #reset-link {
+     margin-top: 20px;
+ }
+
+footer {
+    background-color: darkgray;
+    margin-top: 120px;
+    padding: 20px;
+}
