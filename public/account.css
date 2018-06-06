@@ -29,35 +29,37 @@ nav p {
     padding: 20px 10px 0px 0px;
 }
 
-main {
+#HL-page {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
 }
- #login-form {
-     max-width: 400px;
-     display: flex;
-     flex-direction: column;
-     background-color: whitesmoke;
-     padding: 40px 40px 60px 40px;
-     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-     margin-top: 20px;
-     margin-bottom: 20px;
- }
 
- #sign-up-links {
-     margin-top: 20px;
- }
+#inputs-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 800px;;
+}
 
- label,
- #submit,
- #reset-link {
-     margin-top: 20px;
- }
+#expense-box,
+#budget-box {
+    background-color: whitesmoke;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    padding: 40px 40px 40px 40px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-footer {
-    background-color: darkgray;
-    margin-top: 120px;
-    padding: 20px;
+#expense-box {
+    margin-left: 10px;
+}
+
+#budget-box {
+    margin-right: 10px;
+}
+
+#graph-box {
+    margin-top: 40px;
 }

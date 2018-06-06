@@ -8,11 +8,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/public/account.css">
+    <link rel="stylesheet" href="/account.css">
 </head>
 <body>
     <header>
-        <img id="logo" src="/public/ftg-logo.png" alt="The FinTech Guru">
+        <img id="logo" src="/ftg-logo.png" alt="The FinTech Guru">
         <nav>
             <p>Home |</p>
             <p>Blog |</p>
@@ -20,7 +20,88 @@
         </nav>
     </header>
     <main>
-
+        <div id="HL-page">
+            <div id="inputs-box">
+                <div id="expense-box">
+                    <form action="submit">
+                        <legend>Enter new expense</legend>
+                        <div id="amt-div">
+                            <label for="amount">Amount: </label>
+                            <input type="number">
+                        </div>
+                        <div id="cat-div">
+                            <label for="category">Category: </label>
+                            <select name="category" id="catergory">
+                                <option value="">Category...</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="eating-out">Eating Out</option>
+                                <option value="personal-care">Personal Care</option>
+                                <option value="clothes">Clothes</option>
+                                <option value="household">Household</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="alcohol">Alcohol</option>
+                                <option value="occupancy">Occupancy</option>
+                                <option value="insurance-main">Insurance & Maintenance</option>
+                                <option value="property-taxes">Property Taxes</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="cell-phone">Cell Phone</option>
+                                <option value="vehicle-payments">Vehicle Payments</option>
+                                <option value="gas">Gas & Oil</option>
+                                <option value="public-trans">Public Transportation</option>
+                                <option value="maintenance">Vehicle Maintenance</option>
+                                <option value="insurance-other">Auto Insurance & Other</option>
+                                <option value="health-insurance">Health Insurance</option>
+                                <option value="medical-services">Medical Services</option>
+                                <option value="drugs">Drugs</option>
+                                <option value="medical-supplies">Medical Supplies</option>
+                                <option value="personal-insurance">Personal Insurance</option>
+                                <option value="education">Education</option>
+                                <option value="cash-contributions">Cash Contributions</option>
+                                <option value="misc">Misc</option>
+                            </select>
+                        </div>
+                        <div id="date-div">
+                            <label for="date">Date: </label>
+                            <input type="date">
+                        </div>
+                        <input type="submit" class="btn btn-primary">
+                    </form>
+                </div>
+                <div id="budget-box">
+                    <form action="submit">
+                        <legend>Set Monthly Budget</legend>
+                        <input type="month">
+                        <div id="shopping-div">
+                            <label for="shopping">Shopping: </label>
+                            <input type="number" min="0" name="shopping">     
+                        </div>
+                        <div id="housing-div">
+                            <label for="housing">Housing: </label>
+                            <input type="number" min="0" name="housing">     
+                        </div>
+                        <div id="trans-div">
+                            <label for="transportation">Transportation: </label>
+                            <input type="number" min="0" name="transportation">     
+                        </div>
+                        <div id="healthcare-div">
+                            <label for="healthcare">Healthcare: </label>
+                            <input type="number" min="0" name="healthcare">     
+                        </div>
+                        <div id="other-div">
+                            <label for="other">Other: </label>
+                            <input type="number" min="0" name="other">     
+                        </div>
+                        <input type="submit" class="btn btn-primary">       
+                    </form>
+                </div>
+            </div>
+            <div id="graph-box">
+                <input type="month">
+                <div id="graph">
+                    <p>placeholder for high level graph showing major budget categories vs actual expenses for selected month</p>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         <div>
