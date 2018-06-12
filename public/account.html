@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/account.css">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/lib/d3.v4.3.0.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -31,8 +35,19 @@
                         </div>
                         <div id="cat-div">
                             <label for="category">Category: </label>
-                            <select name="category" id="catergory">
+                            <select name="category" id="category">
                                 <option value="">Category...</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="housing">Housing</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                       <!-- <div id="sub-cat-div">
+                            <label for="sub-category">Sub-category: </label>
+                            <select name="sub-category" id="sub-catergory">
+                                <option value="">Sub-category...</option>
                                 <option value="groceries">Groceries</option>
                                 <option value="eating-out">Eating Out</option>
                                 <option value="personal-care">Personal Care</option>
@@ -59,18 +74,47 @@
                                 <option value="cash-contributions">Cash Contributions</option>
                                 <option value="misc">Misc</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div id="date-div">
-                            <label for="date">Date: </label>
-                            <input type="date">
-                        </div>
+                            <label for="month-expense">Month: </label>
+                            <select name="month-expense" id="month-expense">
+                                <option value="">Month...</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div> 
                         <input type="submit" class="btn btn-primary">
                     </form>
                 </div>
                 <div id="budget-box">
                     <form action="submit">
                         <legend>Set Monthly Budget</legend>
-                        <input type="month">
+                        <label for="month-budget">Month: </label>
+                            <select name="month-budget" id="month-budget">
+                                <option value="">Month...</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
                         <div id="shopping-div">
                             <label for="shopping">Shopping: </label>
                             <input type="number" min="0" name="shopping">     
@@ -95,12 +139,51 @@
                     </form>
                 </div>
             </div>
-            <div id="graph-box">
-                <input type="month">
-                <div id="graph">
-                    <p>placeholder for high level graph showing major budget categories vs actual expenses for selected month</p>
+            <div id="graph-container">
+                <label for="month-graph">Month: </label>
+                <select name="month-graph" id="month-graph">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <div id="graph-box">
+                    <div id="vs-budget"> 
+
+                    </div>
+                    <div id="category-chart">
+
+                    </div>
                 </div>
             </div>
+        <div id="monthly-box">
+            <div id="monthly-graph">
+                
+            </div>
+            <div id="monthly-total">
+                
+            </div>
+        </div>
+        <div id="table-box">
+            <table id="details" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </main>
     <footer>
@@ -110,5 +193,6 @@
             <p>&copy; The FinTech Guru 2018</p>
         </div>
     </footer>
+    <script src="charts.js"></script>
 </body>
 </html>

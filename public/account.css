@@ -38,7 +38,7 @@ nav p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 800px;;
+    max-width: 1200px;;
 }
 
 #expense-box,
@@ -49,7 +49,7 @@ nav p {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    width: 455px; 
 }
 
 #expense-box {
@@ -60,6 +60,46 @@ nav p {
     margin-right: 10px;
 }
 
+legend {
+    text-align: center;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#graph-container {
+    margin-top: 40px;
+}
+
 #graph-box {
     margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#monthly-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#shopping-div,
+#housing-div,
+#trans-div,
+#healthcare-div,
+#other-div,
+#amt-div,
+#cat-div,
+#date-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+#table-box {
+    max-width: 1200px;
 }
