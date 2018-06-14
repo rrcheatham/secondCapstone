@@ -8,7 +8,7 @@ const { ExpenseData } = require('./models');
 
 const app = express();
 
-app.use(express.json());
+//app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/expenses', (req, res) => {
