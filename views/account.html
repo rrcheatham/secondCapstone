@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/account.css">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/lib/d3.v4.3.0.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <img id="logo" src="/ftg-logo.png" alt="The FinTech Guru">
+        <nav>
+            <p>Home |</p>
+            <p>Blog |</p>
+            <p>About</p>
+        </nav>
+    </header>
+    <main>
+        <div id="HL-page">
+            <div id="inputs-box">
+                <div id="expense-box">
+                    <form action="submit">
+                        <legend>Enter new expense</legend>
+                        <div id="amt-div">
+                            <label for="amount">Amount: </label>
+                            <input type="number">
+                        </div>
+                        <div id="cat-div">
+                            <label for="category">Category: </label>
+                            <select name="category" id="category">
+                                <option value="">Category...</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="housing">Housing</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                       <!-- <div id="sub-cat-div">
+                            <label for="sub-category">Sub-category: </label>
+                            <select name="sub-category" id="sub-catergory">
+                                <option value="">Sub-category...</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="eating-out">Eating Out</option>
+                                <option value="personal-care">Personal Care</option>
+                                <option value="clothes">Clothes</option>
+                                <option value="household">Household</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="alcohol">Alcohol</option>
+                                <option value="occupancy">Occupancy</option>
+                                <option value="insurance-main">Insurance & Maintenance</option>
+                                <option value="property-taxes">Property Taxes</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="cell-phone">Cell Phone</option>
+                                <option value="vehicle-payments">Vehicle Payments</option>
+                                <option value="gas">Gas & Oil</option>
+                                <option value="public-trans">Public Transportation</option>
+                                <option value="maintenance">Vehicle Maintenance</option>
+                                <option value="insurance-other">Auto Insurance & Other</option>
+                                <option value="health-insurance">Health Insurance</option>
+                                <option value="medical-services">Medical Services</option>
+                                <option value="drugs">Drugs</option>
+                                <option value="medical-supplies">Medical Supplies</option>
+                                <option value="personal-insurance">Personal Insurance</option>
+                                <option value="education">Education</option>
+                                <option value="cash-contributions">Cash Contributions</option>
+                                <option value="misc">Misc</option>
+                            </select>
+                        </div> -->
+                        <div id="date-div">
+                            <label for="month-expense">Month: </label>
+                            <select name="month-expense" id="month-expense">
+                                <option value="">Month...</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div> 
+                        <input type="submit" class="btn btn-primary">
+                    </form>
+                </div>
+                <div id="budget-box">
+                    <form action="submit">
+                        <legend>Set Monthly Budget</legend>
+                        <label for="month-budget">Month: </label>
+                            <select name="month-budget" id="month-budget">
+                                <option value="">Month...</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        <div id="shopping-div">
+                            <label for="shopping">Shopping: </label>
+                            <input type="number" min="0" name="shopping">     
+                        </div>
+                        <div id="housing-div">
+                            <label for="housing">Housing: </label>
+                            <input type="number" min="0" name="housing">     
+                        </div>
+                        <div id="trans-div">
+                            <label for="transportation">Transportation: </label>
+                            <input type="number" min="0" name="transportation">     
+                        </div>
+                        <div id="healthcare-div">
+                            <label for="healthcare">Healthcare: </label>
+                            <input type="number" min="0" name="healthcare">     
+                        </div>
+                        <div id="other-div">
+                            <label for="other">Other: </label>
+                            <input type="number" min="0" name="other">     
+                        </div>
+                        <input type="submit" class="btn btn-primary">       
+                    </form>
+                </div>
+            </div>
+            <div id="graph-container">
+                <label for="month-graph">Month: </label>
+                <select name="month-graph" id="month-graph">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <div id="graph-box">
+                    <div id="vs-budget"> 
+
+                    </div>
+                    <div id="category-chart">
+
+                    </div>
+                </div>
+            </div>
+        <div id="monthly-box">
+            <div id="monthly-graph">
+                
+            </div>
+            <div id="monthly-total">
+                
+            </div>
+        </div>
+        <div id="table-box">
+            <table id="details" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <p>Privacy</p>
+            <p>Contact</p>
+            <p>&copy; The FinTech Guru 2018</p>
+        </div>
+    </footer>
+    <script src="charts.js"></script>
+</body>
+</html>

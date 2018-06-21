@@ -4,12 +4,56 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
-const { ExpenseData } = require('./models');
+const { ExpenseData, UserData } = require('./models');
 
 const app = express();
 
-//app.use(express.json());
+app.use(express.json());
 app.use(express.static('public'));
+
+app.get('/users', function(req, res) {
+    UserData
+    .find()
+    .limit(12)
+    .then(users => {
+        res.json({
+            users: users.map(
+                (user) => user.serialize())
+        });
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error'});
+    });
+});
+
+app.post('/users', (req, res) => {
+    const requiredFields = ['username', 'password', 'email'];
+    for (let i=0; i < requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+            const message = `Missing \`${field}\` in request body`;
+            console.error(message);
+            return res.status(400).send(message);
+        }
+    }
+    UserData
+        .create({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            age: req.body.age,
+            country: req.body.country,
+            city: req.body.city
+        })
+        .then(userdata => res.status(201).json(userdata.serialize()))
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ message: 'Internal server error'});
+        });
+});
 
 app.get('/expenses', (req, res) => {
     ExpenseData

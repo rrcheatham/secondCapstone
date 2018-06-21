@@ -35,7 +35,7 @@ main {
     align-items: center;
     padding-top: 20px;
 }
- #login-form {
+ #signup-form {
      max-width: 400px;
      display: flex;
      flex-direction: column;
@@ -60,4 +60,8 @@ footer {
     background-color: darkgray;
     margin-top: 120px;
     padding: 20px;
+}
+
+#success-p {
+    font-size: 20px;
 }

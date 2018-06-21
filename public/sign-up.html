@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/sign-up.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -21,22 +23,22 @@
     </header>
     <main>
         <h1>The FinTech Guru Expense Tracker</h1>
-        <form id="login-form" action="submit">
+        <form id="signup-form">
             <legend>Create an account</legend>
             <label for="username">*Username: </label>
-            <input type="text" name="username">
+            <input type="text" name="username" id="username" required>
             <label for="password">*Password: </label>
-            <input type="text" name="password">
+            <input type="text" name="password" id="password" required>
             <label for="email">*Email: </label>
-            <input type="email" name="email">
+            <input type="email" name="email" id="email" required>
             <label for="firstName">First Name: </label>
-            <input type="text" name="firstName">
+            <input type="text" name="firstName" id="firstname">
             <label for="lastName">Last Name: </label>
-            <input type="text" name="lastName">
+            <input type="text" name="lastName" id="lastname">
             <label for="age">Age: </label>
-            <input type="number" name="age" min="1" max="100">
-            <label for="Country">Country: </label>
-            <select name="country">
+            <input type="number" name="age" min="1" max="100" id="age">
+            <label for="country">Country: </label>
+            <select name="country" id="country">
                     <option value="">Country...</option>
                     <option value="Afganistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
@@ -287,9 +289,12 @@
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
                 <label for="city">City: </label>
-                <input type="text" name="city">
-            <button id="submit" class="btn btn-primary">Submit</button>
+                <input type="text" name="city" id=:city">
+            <input type="submit" id="submit" class="btn btn-primary" value="Submit">
         </form>
+        <div id="success" class="hidden">
+            <p style="font-size: 20px; margin-top: 50px; margin-bottom: 250px;">You have successfully signed up for an account. Please <a href="/index.html">return to the login page.</a></p>
+        </div>
     </main>
     <footer>
         <div>
@@ -298,5 +303,6 @@
             <p>&copy; The FinTech Guru 2018</p>
         </div>
     </footer>
+    <script src="/sign-up.js"></script>
 </body>
 </html>

@@ -18,7 +18,31 @@ expenseDataSchema.methods.serialize = function() {
     };
 };
 
-const ExpenseData = mongoose.model('ExpenseData', expenseDataSchema, 'expenses');
+const userSchema = mongoose.Schema({
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    email: {type: String, required: true},
+    firstname: {type: String},
+    lastname: {type: String},
+    age: {type: Number},
+    country: {type: String},
+    city: {type: String}
+});
 
-module.exports = {ExpenseData};
+userSchema.methods.serialize = function() {
+    return {
+        username: this.username,
+        email: this.email,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        age: this.age,
+        country: this.country,
+        city: this.city
+    };
+};
+
+const ExpenseData = mongoose.model('ExpenseData', expenseDataSchema, 'expenses');
+const UserData = mongoose.model('UserData', userSchema, 'users');
+
+module.exports = { ExpenseData, UserData };
 
