@@ -29,7 +29,7 @@ function createNewUser(callback) {
         url: '/users',
         data: formData,
         success: callback,
-        //dataType: 'json',
+        dataType: 'json',
         contentType: 'application/json'
     });
 }
