@@ -22,7 +22,7 @@ router.post('/', jsonParser, (req, res) => {
 
     const stringFields = ['username', 'password', 'firstName', 'lastName'];
     const nonStringField = stringFields.find(
-        field => field in req.nbody && typeof req.body[field] !== 'string'
+        field => field in req.body && typeof req.body[field] !== 'string'
     );
 
     if (nonStringField) {
@@ -42,7 +42,8 @@ router.post('/', jsonParser, (req, res) => {
     if (nonTrimmedField) {
         return res.status(422).json({
             code: 422,
-            reason: 'Cannot start or end with whitespace',
+            reason: 'ValidationError',
+            message: 'Cannot start or end with whitespace',
             location: nonTrimmedField
         });
     }
@@ -60,11 +61,12 @@ router.post('/', jsonParser, (req, res) => {
     const tooSmallField = Object.keys(sizedFields).find(
         field =>
             'min' in sizedFields[field] &&
-                req.body[field].trim().length < sizedFields[field].mim
+                req.body[field].trim().length < sizedFields[field].min
     );
 
     const tooLargeField = Object.keys(sizedFields).find(
-        'max' in sizedFields[field] &&
+        field =>
+            'max' in sizedFields[field] &&
             req.body[field].trim().length > sizedFields[field].max
     );
 
@@ -75,7 +77,7 @@ router.post('/', jsonParser, (req, res) => {
             message: tooSmallField
                 ? `Must be at least ${sizedFields[tooSmallField]
                   .min} characters long`
-                : `Must by at most ${sizedFields[tooLargeField]
+                : `Must be at most ${sizedFields[tooLargeField]
                   .max} characters long`,
             location: tooSmallField || tooLargeField
         });
@@ -101,7 +103,7 @@ router.post('/', jsonParser, (req, res) => {
         .then(hash => {
             return User.create({
                 username,
-                passsword: hash,
+                password: hash,
                 firstName,
                 lastName
             });
@@ -119,7 +121,7 @@ router.post('/', jsonParser, (req, res) => {
 
 //delete router below after dev is completed
 
-rounter.get('/', (req, res) => {
+router.get('/', (req, res) => {
     return User.find()
         .then(users => res.json(users.map(user => user.serialize())))
         .catch(err => res.status(500).json({message: 'Internal server error'}));

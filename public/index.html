@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -24,10 +25,10 @@
         <form id="login-form" action="submit">
             <legend>Sign into your account</legend>
             <label for="username">Username: </label>
-            <input type="text">
+            <input type="text" id="username" name="username">
             <label for="password">Password: </label>
-            <input type="text">
-            <button id="submit" class="btn btn-primary">Submit</button>
+            <input type="text" id="password" name="password">
+            <input type="submit" id="submit" value="Log In" class="btn btn-primary">
             <p id="reset-link">Forgot your password? Reset it <a href="/reset.html">here</a>.</p>
         </form>
         <div id="sign-up-links">
@@ -46,5 +47,6 @@
             <p>&copy; The FinTech Guru 2018</p>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 </html>

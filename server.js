@@ -3,6 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
+const path = require('path');
+
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
 
@@ -16,7 +20,38 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-app.get('/users', function(req, res) {
+app.use(morgan('common'));
+
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+// A protected endpoint which needs a valid JWT to access it
+app.get('/account', jwtAuth, (req, res) => {
+  console.log("authenticated");
+  res.sendFile(path.join(process.cwd() + '/account/account.html'));
+});
+
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: 'Not Found' });
+});
+
+/* app.get('/users', function(req, res) {
     UserData
     .find()
     .limit(12)
@@ -30,9 +65,9 @@ app.get('/users', function(req, res) {
         console.error(err);
         res.status(500).json({ message: 'Internal server error'});
     });
-});
+}); */
 
-app.post('/users', (req, res) => {
+/* app.post('/users', (req, res) => {
     const requiredFields = ['username', 'password', 'email'];
     for (let i=0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -58,7 +93,7 @@ app.post('/users', (req, res) => {
             console.error(err);
             res.status(500).json({ message: 'Internal server error'});
         });
-});
+}); */
 
 app.get('/expenses', (req, res) => {
     ExpenseData
