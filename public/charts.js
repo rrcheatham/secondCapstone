@@ -1,24 +1,44 @@
 
 
-function callExpenseAPI() {
-    // GET calls to API for expense data to populate graphs and table
+function callExpenseAPI(callback) {
+    var username = localStorage.getItem('user');
+    console.log(username);
+    const settings = {
+        url: '/expenses',
+        contentType: 'application/json',
+        data: {
+            username: username
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: callback
+    };
+    $.ajax(settings);
 }
 
-function intitalGraphBuild() {
+function intitalGraphBuild(jsonData) {
     setDropDownToCurrMonth();
-    buildMonthVsBudget("/mock-data.json");
-    buildMonthlyPieChart("/mock-data.json");
-    build12MonthGraph("/mock-data.json");
-    build12MonthTotalGraph("/mock-data.json");
-    buildDetailTable("/mock-data.json");
+    buildMonthVsBudget(jsonData);
+    //callExpenseAPI(buildMonthVsBudget);
+    buildMonthlyPieChart(jsonData);
+    //callExpenseAPI(buildMonthlyPieChart);
+    build12MonthGraph(jsonData);
+    //callExpenseAPI(build12MonthGraph);
+    build12MonthTotalGraph(jsonData);
+    //callExpenseAPI(build12MonthTotalGraph);
+    buildDetailTable(jsonData);
+    //callExpenseAPI(buildDetailTable);
 }
     
 
 function updateMonthlyGraphs() {
     document.getElementById("vs-budget").innerHTML = "";
     document.getElementById("category-chart").innerHTML = "";
-    buildMonthVsBudget("/mock-data.json");
-    buildMonthlyPieChart("/mock-data.json"); 
+    //buildMonthVsBudget("/mock-data.json");
+    callExpenseAPI(buildMonthVsBudget);
+    //buildMonthlyPieChart("/mock-data.json");
+    callExpenseAPI(buildMonthlyPieChart);
+    callExpenseAPI(buildDetailTable); 
 }
 
 function selectMonthListener() {
@@ -50,12 +70,13 @@ function setDropDownToCurrMonth() {
 //var myMockDataMonthly = dimple.filterData("/mock-data.json", "month", "January");
 
 function buildMonthVsBudget(jsonData) {
+    console.log(jsonData);
     var selectedMonth = document.getElementById("month-graph").value;
     var svg = dimple.newSvg("#vs-budget", 590, 400);
     d3.json(jsonData, function (data) {
-        data = jQuery.grep(data, function(expense, i) {
-            return expense.month === selectedMonth;
-        });
+       // data = jQuery.grep(data, function(expense, i) {
+        //    return expense.month === selectedMonth;
+        data = dimple.filterData(data, "month", selectedMonth);
         var myChart = new dimple.chart(svg, data);
         myChart.setBounds(80, 30, 480, 330)
         myChart.addMeasureAxis("x", "amount");
@@ -209,5 +230,5 @@ function buildDetailTable(jsonData) {
 
 
 
-intitalGraphBuild();
+callExpenseAPI(intitalGraphBuild);
 $(selectMonthListener);

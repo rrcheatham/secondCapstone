@@ -4,6 +4,7 @@ function loginToAccount(callback) {
         username: $('#username').val(),
         password: $('#password').val()
     };
+    localStorage.setItem('user', $('#username').val());
     formData = JSON.stringify(formData);
     console.log(formData);
     var settings = {
@@ -31,7 +32,8 @@ function sucessfullLogin(data) {
     console.log(data);
     localStorage.setItem('token', data.authToken);
     console.log(localStorage.getItem('token'));
-    accessAccount();
+    top.window.location.href = "/account.html";
+    //accessAccount();
 }
 
 function watchForSubmit() {

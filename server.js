@@ -10,8 +10,6 @@ const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
 
-
-
 const { PORT, DATABASE_URL } = require('./config');
 const { ExpenseData, UserData } = require('./models');
 
@@ -47,58 +45,9 @@ app.get('/account', jwtAuth, (req, res) => {
   res.sendFile(path.join(process.cwd() + '/account/account.html'));
 });
 
-app.use('*', (req, res) => {
-  return res.status(404).json({ message: 'Not Found' });
-});
-
-/* app.get('/users', function(req, res) {
-    UserData
-    .find()
-    .limit(12)
-    .then(users => {
-        res.json({
-            users: users.map(
-                (user) => user.serialize())
-        });
-    })
-    .catch(err => {
-        console.error(err);
-        res.status(500).json({ message: 'Internal server error'});
-    });
-}); */
-
-/* app.post('/users', (req, res) => {
-    const requiredFields = ['username', 'password', 'email'];
-    for (let i=0; i < requiredFields.length; i++) {
-        const field = requiredFields[i];
-        if (!(field in req.body)) {
-            const message = `Missing \`${field}\` in request body`;
-            console.error(message);
-            return res.status(400).send(message);
-        }
-    }
-    UserData
-        .create({
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            age: req.body.age,
-            country: req.body.country,
-            city: req.body.city
-        })
-        .then(userdata => res.status(201).json(userdata.serialize()))
-        .catch(err => {
-            console.error(err);
-            res.status(500).json({ message: 'Internal server error'});
-        });
-}); */
-
 app.get('/expenses', (req, res) => {
     ExpenseData
         .find()
-        .limit(12)
         .then(expenses => {
             res.json({
                 expenses: expenses.map(
@@ -173,6 +122,11 @@ app.delete('/expenses/:id', (req, res) => {
         .then(expense => res.status(204).end())
         .catch(err => res.status(500).json({ message: 'Internal server error'}));
 });
+
+app.use('*', (req, res) => {
+    return res.status(404).json({ message: 'Not Found' });
+  });
+  
 
 let server;
 
