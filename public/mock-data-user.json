@@ -1,3 +1,14 @@
+
 [
-{"username": "user1", "password": "aHT4qe*2yK", "firstname": "John", "lastname": "Doe", "age": 35, "country": "United States of America", "city": "Atlanta"}
+{"username": "user1", "password": "aHT4qe*2yK", "firstname": "John", "lastname": "Doe", "age": 35, "country": "United States of America", "city": "Atlanta"},
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
+{"username": "user2", "password": "1234567q", "email": "user2@gmail.com"}
 ]

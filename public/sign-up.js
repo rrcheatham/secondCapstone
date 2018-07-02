@@ -25,7 +25,7 @@ function createNewUser(callback) {
     }; 
     console.log(formData);
     $.ajax({
-        type: 'POST',
+        method: 'POST',
         url: '/users',
         data: formData,
         success: callback,

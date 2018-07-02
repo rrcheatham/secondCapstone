@@ -70,7 +70,7 @@ app.get('/expenses/:id', (req, res) => {
         });
 });
 
-app.post('/expenses', (req, res) => {
+app.post('/expenses/add', (req, res) => {
     const requiredFields = ['category', 'amount', 'month', 'type', 'username'];
     for (let i=0; i < requiredFields.length; i++) {
         const field = requiredFields[i];

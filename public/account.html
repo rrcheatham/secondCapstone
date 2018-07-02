@@ -27,11 +27,11 @@
         <div id="HL-page">
             <div id="inputs-box">
                 <div id="expense-box">
-                    <form action="submit">
+                    <form id='expense-form'>
                         <legend>Enter new expense</legend>
                         <div id="amt-div">
                             <label for="amount">Amount: </label>
-                            <input type="number">
+                            <input type="number" id='expense-amt'>
                         </div>
                         <div id="cat-div">
                             <label for="category">Category: </label>
@@ -44,37 +44,6 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                       <!-- <div id="sub-cat-div">
-                            <label for="sub-category">Sub-category: </label>
-                            <select name="sub-category" id="sub-catergory">
-                                <option value="">Sub-category...</option>
-                                <option value="groceries">Groceries</option>
-                                <option value="eating-out">Eating Out</option>
-                                <option value="personal-care">Personal Care</option>
-                                <option value="clothes">Clothes</option>
-                                <option value="household">Household</option>
-                                <option value="entertainment">Entertainment</option>
-                                <option value="alcohol">Alcohol</option>
-                                <option value="occupancy">Occupancy</option>
-                                <option value="insurance-main">Insurance & Maintenance</option>
-                                <option value="property-taxes">Property Taxes</option>
-                                <option value="utilities">Utilities</option>
-                                <option value="cell-phone">Cell Phone</option>
-                                <option value="vehicle-payments">Vehicle Payments</option>
-                                <option value="gas">Gas & Oil</option>
-                                <option value="public-trans">Public Transportation</option>
-                                <option value="maintenance">Vehicle Maintenance</option>
-                                <option value="insurance-other">Auto Insurance & Other</option>
-                                <option value="health-insurance">Health Insurance</option>
-                                <option value="medical-services">Medical Services</option>
-                                <option value="drugs">Drugs</option>
-                                <option value="medical-supplies">Medical Supplies</option>
-                                <option value="personal-insurance">Personal Insurance</option>
-                                <option value="education">Education</option>
-                                <option value="cash-contributions">Cash Contributions</option>
-                                <option value="misc">Misc</option>
-                            </select>
-                        </div> -->
                         <div id="date-div">
                             <label for="month-expense">Month: </label>
                             <select name="month-expense" id="month-expense">
@@ -97,46 +66,33 @@
                     </form>
                 </div>
                 <div id="budget-box">
-                    <form action="submit">
-                        <legend>Set Monthly Budget</legend>
-                        <label for="month-budget">Month: </label>
-                            <select name="month-budget" id="month-budget">
-                                <option value="">Month...</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </select>
-                        <div id="shopping-div">
-                            <label for="shopping">Shopping: </label>
-                            <input type="number" min="0" name="shopping">     
-                        </div>
-                        <div id="housing-div">
-                            <label for="housing">Housing: </label>
-                            <input type="number" min="0" name="housing">     
-                        </div>
-                        <div id="trans-div">
-                            <label for="transportation">Transportation: </label>
-                            <input type="number" min="0" name="transportation">     
-                        </div>
-                        <div id="healthcare-div">
-                            <label for="healthcare">Healthcare: </label>
-                            <input type="number" min="0" name="healthcare">     
-                        </div>
-                        <div id="other-div">
-                            <label for="other">Other: </label>
-                            <input type="number" min="0" name="other">     
-                        </div>
-                        <input type="submit" class="btn btn-primary">       
-                    </form>
+                        <h2  style = "text-align: center; font-size: 18px; border-bottom: 1px solid lightgray; margin-bottom: 20px; margin-top: 10px;">
+                        Set Monthly Budget</h2>
+                        <form id="shopping-div">
+                            <label for="shopping" style="width: 105px">Shopping: </label>
+                            <input type="number" min="0" name="shopping" id="shopping-budget">  
+                            <input type = "submit" class="btn btn-primary" style = "max-width: 100px">   
+                        </form>
+                        <form id="housing-div">
+                            <label for="housing" style="width: 105px">Housing: </label>
+                            <input type="number" min="0" name="housing" id="housing-budget"> 
+                            <input type = "submit" class="btn btn-primary" style = "max-width: 100px">    
+                        </form>
+                        <form id="trans-div">
+                            <label for="transportation" style="width: 105px">Transportation: </label>
+                            <input type="number" min="0" name="transportation" id="transportation-budget">
+                            <input type = "submit" class="btn btn-primary" style = "max-width: 100px">     
+                        </form>
+                        <form id="healthcare-div">
+                            <label for="healthcare" style="width: 105px">Healthcare: </label>
+                            <input type="number" min="0" name="healthcare" id="healthcare-budget">
+                            <input type = "submit" class="btn btn-primary" style = "max-width: 100px">     
+                        </form>
+                        <form id="other-div">
+                            <label for="other" style="width: 105px">Other: </label>
+                            <input type="number" min="0" name="other" id="other-budget">
+                            <input type = "submit" class="btn btn-primary" style = "max-width: 100px">     
+                        </form>   
                 </div>
             </div>
             <div id="graph-container">
@@ -182,7 +138,7 @@
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="table-body"></tbody>
             </table>
         </div>
     </main>

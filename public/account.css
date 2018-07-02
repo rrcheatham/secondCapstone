@@ -4,6 +4,16 @@ html {
 
 body {
     background-color: #D7D7D7;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #logo {
@@ -102,4 +112,14 @@ legend {
 
 #table-box {
     max-width: 1200px;
+}
+
+#shopping-budget,
+#housing-budget,
+#transportation-budget,
+#healthcare-budget,
+#other-budget {
+    max-width: 150px;
+    text-align: right; 
+    justify-self: right;
 }

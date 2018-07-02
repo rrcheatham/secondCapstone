@@ -2,7 +2,6 @@
 
 function callExpenseAPI(callback) {
     var username = localStorage.getItem('user');
-    console.log(username);
     const settings = {
         url: '/expenses',
         contentType: 'application/json',
@@ -11,6 +10,7 @@ function callExpenseAPI(callback) {
         },
         type: 'GET',
         dataType: 'json',
+        cache: false,
         success: callback
     };
     $.ajax(settings);
@@ -18,27 +18,46 @@ function callExpenseAPI(callback) {
 
 function intitalGraphBuild(jsonData) {
     setDropDownToCurrMonth();
-    buildMonthVsBudget(jsonData);
-    //callExpenseAPI(buildMonthVsBudget);
-    buildMonthlyPieChart(jsonData);
-    //callExpenseAPI(buildMonthlyPieChart);
-    build12MonthGraph(jsonData);
-    //callExpenseAPI(build12MonthGraph);
-    build12MonthTotalGraph(jsonData);
-    //callExpenseAPI(build12MonthTotalGraph);
-    buildDetailTable(jsonData);
-    //callExpenseAPI(buildDetailTable);
+    buildMonthVsBudget(jsonData.expenses);
+    buildMonthlyPieChart(jsonData.expenses);
+    build12MonthGraph(jsonData.expenses);
+    build12MonthTotalGraph(jsonData.expenses);
+    buildDetailTable(jsonData.expenses);
+    populateBudgetFields(jsonData.expenses);
+}
+
+function rebuildMonthlyGraphs(jsonData) {
+    buildMonthVsBudget(jsonData.expenses);
+    buildMonthlyPieChart(jsonData.expenses);
+    buildDetailTable(jsonData.expenses);
+    populateBudgetFields(jsonData.expenses);
 }
     
 
 function updateMonthlyGraphs() {
     document.getElementById("vs-budget").innerHTML = "";
     document.getElementById("category-chart").innerHTML = "";
-    //buildMonthVsBudget("/mock-data.json");
-    callExpenseAPI(buildMonthVsBudget);
-    //buildMonthlyPieChart("/mock-data.json");
-    callExpenseAPI(buildMonthlyPieChart);
-    callExpenseAPI(buildDetailTable); 
+    document.getElementById("table-body").innerHTML = "";
+    callExpenseAPI(rebuildMonthlyGraphs);
+}
+
+function populateBudgetFields(jsonData) {
+    var budgetData = dimple.filterData(jsonData, "type", "budget");
+    var shopping = dimple.filterData(budgetData, "category", "shopping");
+    document.getElementById('shopping-budget').value = shopping[0].amount;
+    document.getElementById('shopping-budget').setAttribute('class', shopping[0].id);
+    var housing = dimple.filterData(budgetData, "category", "housing");
+    document.getElementById('housing-budget').value = housing[0].amount;
+    document.getElementById('housing-budget').setAttribute('class', housing[0].id);
+    var transportation = dimple.filterData(budgetData, "category", "transportation");
+    document.getElementById('transportation-budget').value = transportation[0].amount;
+    document.getElementById('transportation-budget').setAttribute('class', transportation[0].id);
+    var healthcare = dimple.filterData(budgetData, "category", "healthcare");
+    document.getElementById('healthcare-budget').value = healthcare[0].amount;
+    document.getElementById('healthcare-budget').setAttribute('class', healthcare[0].id);
+    var other = dimple.filterData(budgetData, "category", "other");
+    document.getElementById('other-budget').value = other[0].amount;
+    document.getElementById('other-budget').setAttribute('class', other[0].id);
 }
 
 function selectMonthListener() {
@@ -48,12 +67,118 @@ function selectMonthListener() {
     }
 }
 
-function sendExpenseToAPI() {
-    //send push request to API for new expense
+function sendExpenseToAPI(callback) {
+    var username = localStorage.getItem('user');
+    var category = document.getElementById('category').value;
+    var month = document.getElementById('month-expense').value;
+    var amount = document.getElementById('expense-amt').value;
+    var formData = {
+        category: category,
+        amount: amount,
+        month: month,
+        type: 'actual',
+        username: username
+    };
+    const settings = {
+        url: '/expenses/add',
+        method: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        //dataType: 'json',
+        success: callback
+    };
+    $.ajax(settings);
 }
 
+
 function expenseSubmitListener() {
-    //event listener for submit on new expense
+    $('#expense-form').submit(event => {
+        event.preventDefault();
+        sendExpenseToAPI(expenseAdded);
+    })
+}
+
+function expenseAdded() {
+    document.getElementById('category').value = '';
+    document.getElementById('month-expense').value = 'Month...'; 
+    document.getElementById('expense-amt').value = '';
+    window.alert('Expense submitted');
+    updateMonthlyGraphs();
+}
+
+
+function updateBudgetAPI(id, amt, callback) {
+    var formData = {
+        amt: amt
+    };
+    var settings = {
+        url: `/expenses/${id}`,
+        method: 'PUT',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: callback
+    };
+    $.ajax(settings);
+}
+
+function budgetShoppingSubmitListener() {
+    var id = document.getElementById('shopping-budget').getAttribute('class');
+    var amt = document.getElementById('shopping-budget').value;
+    $('#shopping-div').submit( event => {
+        event.preventDefault();
+        updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
+    })
+}
+
+function budgetHousingSubmitListener() {
+    var id = document.getElementById('housing-budget').getAttribute('class');
+    var amt = document.getElementById('housing-budget').value;
+    $('#housing-div').submit( event => {
+        event.preventDefault();
+        updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
+    })
+}
+
+function budgetTransportationSubmitListener() {
+    var id = document.getElementById('transportation-budget').getAttribute('class');
+    var amt = document.getElementById('transportation-budget').value;
+    $('#transportation-div').submit( event => {
+        event.preventDefault();
+        updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
+    })
+}
+
+function budgetHealthcareSubmitListener() {
+    var id = document.getElementById('healthcare-budget').getAttribute('class');
+    var amt = document.getElementById('healthcare-budget').value;
+    $('#healthcare-div').submit( event => {
+        event.preventDefault();
+        updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
+    })
+}
+
+function budgetOtherSubmitListener() {
+    var id = document.getElementById('other-budget').getAttribute('class');
+    var amt = document.getElementById('other-budget').value;
+    $('#other-div').submit( event => {
+        event.preventDefault();
+        updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
+    })
+}
+
+function sucessfulBudgetUpdate() {
+    window.alert('Budget Submitted');
+    updateMonthlyGraphs();
+}
+
+function deleteActualAPI(id, callback) {
+    var settings = {
+        url: `/expenses/${id}`,
+        method: 'DELETE',
+        contentType: 'application/json',
+        success: callback
+    }
+    $.ajax(settings);
 }
 
 function setDropDownToCurrMonth() {
@@ -67,24 +192,17 @@ function setDropDownToCurrMonth() {
 
 //vs-budget graph
 
-//var myMockDataMonthly = dimple.filterData("/mock-data.json", "month", "January");
-
 function buildMonthVsBudget(jsonData) {
-    console.log(jsonData);
     var selectedMonth = document.getElementById("month-graph").value;
     var svg = dimple.newSvg("#vs-budget", 590, 400);
-    d3.json(jsonData, function (data) {
-       // data = jQuery.grep(data, function(expense, i) {
-        //    return expense.month === selectedMonth;
-        data = dimple.filterData(data, "month", selectedMonth);
-        var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(80, 30, 480, 330)
-        myChart.addMeasureAxis("x", "amount");
-        myChart.addCategoryAxis("y", ["category", "type"]);
-        myChart.addSeries("type", dimple.plot. bar);
-        myChart.addLegend(60, 10, 510, 20, "right");
-        myChart.draw();
-    });
+    let data = dimple.filterData(jsonData, "month", selectedMonth);
+    var myChart = new dimple.chart(svg, data);
+    myChart.setBounds(80, 30, 480, 330)
+    myChart.addMeasureAxis("x", "amount");
+    myChart.addCategoryAxis("y", ["category", "type"]);
+    myChart.addSeries("type", dimple.plot. bar);
+    myChart.addLegend(60, 10, 510, 20, "right");
+    myChart.draw();
 }
 
 // actuals break-down graph
@@ -92,17 +210,13 @@ function buildMonthVsBudget(jsonData) {
 function buildMonthlyPieChart(jsonData) {
     var selectedMonth = document.getElementById("month-graph").value;
     var svg = dimple.newSvg("#category-chart", 590, 400);
-    d3.json(jsonData, function (data) {
-        data = jQuery.grep(data, function(expense, i) {
-            return expense.month === selectedMonth && expense.type === "actual";
-        });
-        var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(20, 20, 460, 360)
-        myChart.addMeasureAxis("p", "amount");
-        myChart.addSeries("category", dimple.plot.pie);
-        myChart.addLegend(500, 20, 90, 300, "left");
-        myChart.draw();
-    });
+    let data = dimple.filterData(jsonData, "month", selectedMonth);
+    var myChart = new dimple.chart(svg, data);
+    myChart.setBounds(20, 20, 460, 360)
+    myChart.addMeasureAxis("p", "amount");
+    myChart.addSeries("category", dimple.plot.pie);
+    myChart.addLegend(500, 20, 90, 300, "left");
+    myChart.draw();
 }
 
 //monthly expense graph
@@ -110,10 +224,7 @@ function buildMonthlyPieChart(jsonData) {
 function build12MonthGraph(jsonData) {
 
     var svg = dimple.newSvg("#monthly-graph", 590, 400);
-    d3.json(jsonData, function (data) {
-        data = jQuery.grep(data, function(expense, i) {
-            return expense.type === "actual";
-        });
+    let data = dimple.filterData(jsonData, "type", "actual");
      // Get a unique list of dates
         var months = dimple.getUniqueValues(data, "month");
 
@@ -141,6 +252,7 @@ function build12MonthGraph(jsonData) {
         
         // Filter for the month in the iteration
             var chartData = dimple.filterData(data, "month", month);
+    
             
         // Use d3 to draw a text label for the month
             svg
@@ -150,8 +262,8 @@ function build12MonthGraph(jsonData) {
                     .style("font-family", "sans-serif")
                     .style("text-anchor", "middle")
                     .style("font-size", "28px")
-                    .style("opacity", 0.2);
-                    //.text(chartData[0].Month.substring(0, 3));
+                    .style("opacity", 0.5)
+                    .text(chartData[0].month.substring(0, 3));
             
             // Create a chart at the correct point in the trellis
             var myChart = new dimple.chart(svg, chartData);
@@ -195,22 +307,19 @@ function build12MonthGraph(jsonData) {
             col += 1;
 
         }, this);
-    });
 }
 
 // monthly total graph
 
 function build12MonthTotalGraph(jsonData) {
     var svg = dimple.newSvg("#monthly-total", 590, 420);
-    d3.json(jsonData, function (data) {
-    var myChart = new dimple.chart(svg, data);
+    var myChart = new dimple.chart(svg, jsonData);
     myChart.setBounds(60, 45, 510, 315)
     myChart.addCategoryAxis("x", ["month", "type"]).addOrderRule(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
     myChart.addMeasureAxis("y", "amount");
     myChart.addSeries("type", dimple.plot.bar);
     myChart.addLegend(200, 10, 380, 20, "right");
     myChart.draw();
-    });
 }
 
 // detailed expense table
@@ -218,17 +327,21 @@ function build12MonthTotalGraph(jsonData) {
 function buildDetailTable(jsonData) {
     var selectedMonth = document.getElementById("month-graph").value;
     $container = $("#details").find("tbody");
-    d3.json(jsonData, function (data) {
-        var data = jQuery.grep(data, function(expense, i) {
-            return expense.month === selectedMonth && expense.type === "actual";
-        });
+    let data = dimple.filterData(jsonData, "month", selectedMonth);
         for (var i = 0; i < data.length; i++) {
-            $container.append("<tr><td>" + data[i].month + "</td><td>" + data[i].category + "</td><td>" + data[i].amount + "</td><td><button id='" + data[i].id + "'>Delete</button></td></tr>")
+            $container.append(`<tr><td>${data[i].month}</td><td>${data[i].category}</td><td>${data[i].amount}</td><td><button id=
+            '${data[i].id}' onClick="deleteActualAPI('${data[i].id}', updateMonthlyGraphs);">Delete</button></td></tr>`)
         ;}   
-    })
 }
 
 
 
 callExpenseAPI(intitalGraphBuild);
 $(selectMonthListener);
+$(expenseSubmitListener);
+$(budgetShoppingSubmitListener);
+$(budgetHousingSubmitListener);
+$(budgetTransportationSubmitListener);
+$(budgetHealthcareSubmitListener);
+$(budgetOtherSubmitListener);
+
