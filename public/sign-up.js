@@ -1,17 +1,3 @@
-//const USER_URL = 'mongodb://localhost/expense-tracker-db/users';
-
-function checkUsername(username, callback) {
-    const settings = {
-        url: '/users',
-        data: {
-            query: `${username}`
-        },
-        dataType: 'json',
-        type: 'GET',
-        success: callback,
-    };
-    $.ajax(settings);
-}
 
 function createNewUser(callback) {
     var formData = { 
@@ -19,15 +5,12 @@ function createNewUser(callback) {
         password: $('#password').val(),  
         email: $('#email').val(), 	
         firstname: $('#firstname').val(),
-        lastname: $('#lastname').val(), 
-        age: $('#age').val(), 	
-        country: $('#country').val()		
+        lastname: $('#lastname').val()	
     }; 
-    console.log(formData);
     $.ajax({
         method: 'POST',
-        url: '/users',
-        data: formData,
+        url: '/api/users',
+        data: JSON.stringify(formData),
         success: callback,
         //dataType: 'json',
         contentType: 'application/json'

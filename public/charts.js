@@ -194,14 +194,14 @@ function setDropDownToCurrMonth() {
 
 function buildMonthVsBudget(jsonData) {
     var selectedMonth = document.getElementById("month-graph").value;
-    var svg = dimple.newSvg("#vs-budget", 590, 400);
+    var svg = dimple.newSvg("#vs-budget", 350, 238);
     let data = dimple.filterData(jsonData, "month", selectedMonth);
     var myChart = new dimple.chart(svg, data);
-    myChart.setBounds(80, 30, 480, 330)
+    myChart.setBounds("20%", "7.5%", "75%", "82.5%")
     myChart.addMeasureAxis("x", "amount");
     myChart.addCategoryAxis("y", ["category", "type"]);
     myChart.addSeries("type", dimple.plot. bar);
-    myChart.addLegend(60, 10, 510, 20, "right");
+    myChart.addLegend("10%", "2.5%", "86%", "5%", "right");
     myChart.draw();
 }
 
@@ -209,13 +209,13 @@ function buildMonthVsBudget(jsonData) {
 
 function buildMonthlyPieChart(jsonData) {
     var selectedMonth = document.getElementById("month-graph").value;
-    var svg = dimple.newSvg("#category-chart", 590, 400);
+    var svg = dimple.newSvg("#category-chart", 350, 238);
     let data = dimple.filterData(jsonData, "month", selectedMonth);
     var myChart = new dimple.chart(svg, data);
-    myChart.setBounds(20, 20, 460, 360)
+    myChart.setBounds("3.4%", "5%", "78%", "90%")
     myChart.addMeasureAxis("p", "amount");
     myChart.addSeries("category", dimple.plot.pie);
-    myChart.addLegend(500, 20, 90, 300, "left");
+    myChart.addLegend("77%", "5%", "15.25%", "75%", "left");
     myChart.draw();
 }
 
@@ -223,7 +223,7 @@ function buildMonthlyPieChart(jsonData) {
 
 function build12MonthGraph(jsonData) {
 
-    var svg = dimple.newSvg("#monthly-graph", 590, 400);
+    var svg = dimple.newSvg("#monthly-graph", 350, 265);
     let data = dimple.filterData(jsonData, "type", "actual");
      // Get a unique list of dates
         var months = dimple.getUniqueValues(data, "month");
@@ -231,11 +231,11 @@ function build12MonthGraph(jsonData) {
     // Set the bounds for the charts
         var row = 0,
             col = 0,
-            top = 25,
-            left = 60,
+            top = 15,
+            left = 35,
             inMarg = 15,
-            width = 115,
-            height = 90,
+            width = 60,
+            height = 50,
             totalWidth = parseFloat(svg.attr("width"));
 
     // Pick the latest 12 dates
@@ -312,13 +312,13 @@ function build12MonthGraph(jsonData) {
 // monthly total graph
 
 function build12MonthTotalGraph(jsonData) {
-    var svg = dimple.newSvg("#monthly-total", 590, 420);
+    var svg = dimple.newSvg("#monthly-total", 350, 250);
     var myChart = new dimple.chart(svg, jsonData);
-    myChart.setBounds(60, 45, 510, 315)
+    myChart.setBounds("10%", "10%", "86%", "75%")
     myChart.addCategoryAxis("x", ["month", "type"]).addOrderRule(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
     myChart.addMeasureAxis("y", "amount");
     myChart.addSeries("type", dimple.plot.bar);
-    myChart.addLegend(200, 10, 380, 20, "right");
+    myChart.addLegend("30%", "2%", "64%", "4.5%", "right");
     myChart.draw();
 }
 

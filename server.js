@@ -47,7 +47,7 @@ app.get('/account', jwtAuth, (req, res) => {
 
 app.get('/expenses', (req, res) => {
     ExpenseData
-        .find()
+        .find({username: req.query.username})
         .then(expenses => {
             res.json({
                 expenses: expenses.map(

@@ -4,6 +4,9 @@ html {
 
 body {
     background-color: #D7D7D7;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #logo {
@@ -13,8 +16,9 @@ body {
 
 header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     padding-top: 10px;
 }
 
@@ -23,8 +27,12 @@ nav {
     flex-direction: row;
 }
 
+h1 {
+    font-size: 20px;
+}
+
 nav p {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     padding: 20px 10px 0px 0px;
 }
@@ -64,4 +72,15 @@ footer {
 
 #success-p {
     font-size: 20px;
+}
+
+footer {
+    background-color: darkgray;
+    margin-top: 150px;
+    padding: 20px;
+    text-align: right;
+}
+
+footer p {
+    margin: 0px;
 }
