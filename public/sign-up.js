@@ -4,13 +4,14 @@ function createNewUser(callback) {
         username: $('#username').val(), 
         password: $('#password').val(),  
         email: $('#email').val(), 	
-        firstname: $('#firstname').val(),
-        lastname: $('#lastname').val()	
+        firstName: $('#firstname').val(),
+        lastName: $('#lastname').val()	
     }; 
+    formData = JSON.stringify(formData);
     $.ajax({
         method: 'POST',
         url: '/api/users',
-        data: JSON.stringify(formData),
+        data: formData,
         success: callback,
         //dataType: 'json',
         contentType: 'application/json'
@@ -26,7 +27,6 @@ function showSuccessView() {
 function watchForSubmit() {
     $('#signup-form').submit((event) => {
         event.preventDefault();
-        console.log("submitted");
         createNewUser(showSuccessView());
     }); 
 }

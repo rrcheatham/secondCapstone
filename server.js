@@ -45,7 +45,7 @@ app.get('/account', jwtAuth, (req, res) => {
   res.sendFile(path.join(process.cwd() + '/account/account.html'));
 });
 
-app.get('/expenses', (req, res) => {
+app.get('/expenses', jwtAuth, (req, res) => {
     ExpenseData
         .find({username: req.query.username})
         .then(expenses => {
@@ -60,7 +60,7 @@ app.get('/expenses', (req, res) => {
         });
 });
 
-app.get('/expenses/:id', (req, res) => {
+app.get('/expenses/:id', jwtAuth, (req, res) => {
     ExpenseData
         .findById(req.params.id)
         .then(expense => res.json(expense.serialize()))
@@ -70,7 +70,7 @@ app.get('/expenses/:id', (req, res) => {
         });
 });
 
-app.post('/expenses/add', (req, res) => {
+app.post('/expenses/add', jwtAuth, (req, res) => {
     const requiredFields = ['category', 'amount', 'month', 'type', 'username'];
     for (let i=0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -95,7 +95,7 @@ app.post('/expenses/add', (req, res) => {
         });
 });
 
-app.put('/expenses/:id', (req, res) => {
+app.put('/expenses/:id', jwtAuth, (req, res) => {
     if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
         const message = (
             `Request path id (${req.params.id}) and request body id ` +
@@ -116,11 +116,17 @@ app.put('/expenses/:id', (req, res) => {
         .catch(err => res.status(500).json({ message: 'Internal server error'}));
 });
 
-app.delete('/expenses/:id', (req, res) => {
+app.delete('/expenses/:id', jwtAuth, (req, res) => {
     ExpenseData
         .findByIdAndRemove(req.params.id)
         .then(expense => res.status(204).end())
         .catch(err => res.status(500).json({ message: 'Internal server error'}));
+});
+
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
 });
 
 app.use('*', (req, res) => {

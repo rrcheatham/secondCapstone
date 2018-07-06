@@ -5,6 +5,7 @@ function callExpenseAPI(callback) {
     const settings = {
         url: '/expenses',
         contentType: 'application/json',
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem('token')},
         data: {
             username: username
         },
@@ -82,6 +83,7 @@ function sendExpenseToAPI(callback) {
     const settings = {
         url: '/expenses/add',
         method: 'POST',
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem('token')},
         data: JSON.stringify(formData),
         contentType: 'application/json',
         //dataType: 'json',
@@ -114,6 +116,7 @@ function updateBudgetAPI(id, amt, callback) {
     var settings = {
         url: `/expenses/${id}`,
         method: 'PUT',
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem('token')},
         data: JSON.stringify(formData),
         contentType: 'application/json',
         success: callback
@@ -175,6 +178,7 @@ function deleteActualAPI(id, callback) {
     var settings = {
         url: `/expenses/${id}`,
         method: 'DELETE',
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem('token')},
         contentType: 'application/json',
         success: callback
     }

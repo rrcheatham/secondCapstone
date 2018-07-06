@@ -6,7 +6,6 @@ function loginToAccount(callback) {
     };
     localStorage.setItem('user', $('#username').val());
     formData = JSON.stringify(formData);
-    console.log(formData);
     var settings = {
         contentType: "application/json",
         url: '/api/auth/login',
@@ -39,7 +38,6 @@ function sucessfullLogin(data) {
 function watchForSubmit() {
     $('#login-form').submit((event) => {
         event.preventDefault();
-        console.log("submitted");
         loginToAccount(sucessfullLogin);
     }); 
 }
