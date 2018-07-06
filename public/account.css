@@ -63,6 +63,7 @@ nav p {
     flex-direction: column;
     width: 350px; 
     font-size: 12px;
+    height: 280px;
 }
 
 legend {
@@ -164,4 +165,31 @@ footer {
 
 footer p {
     margin: 0px;
+}
+
+
+@media screen and (min-width: 768px) {
+    #inputs-box {
+        flex-direction: row;
+    }
+
+    #expense-box {
+        margin-right: 10px;
+    }
+
+    #budget-box {
+        margin-left: 10px;
+    }
+
+    #monthly-graph-container {
+        flex-direction: row;
+    }
+
+    #fullyear-graph-container {
+        flex-direction: row;
+    }
+
+    nav p{
+        font-size: 16px;
+    }
 }

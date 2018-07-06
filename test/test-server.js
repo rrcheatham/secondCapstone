@@ -36,12 +36,3 @@ describe('account page', function() {
     });
 });
 
-describe('rest page', function() {
-    it('should exist', function() {
-        return chai.request(app)
-            .get('/reset.html')
-            .then(function(res) {
-                expect(res).to.have.status(200);
-            });
-    });
-});

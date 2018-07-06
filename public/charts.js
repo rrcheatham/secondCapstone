@@ -223,7 +223,7 @@ function buildMonthlyPieChart(jsonData) {
 
 function build12MonthGraph(jsonData) {
 
-    var svg = dimple.newSvg("#monthly-graph", 350, 265);
+    var svg = dimple.newSvg("#monthly-graph", 350, 300);
     let data = dimple.filterData(jsonData, "type", "actual");
      // Get a unique list of dates
         var months = dimple.getUniqueValues(data, "month");
@@ -235,7 +235,7 @@ function build12MonthGraph(jsonData) {
             left = 35,
             inMarg = 15,
             width = 60,
-            height = 50,
+            height = 55,
             totalWidth = parseFloat(svg.attr("width"));
 
     // Pick the latest 12 dates
@@ -312,9 +312,9 @@ function build12MonthGraph(jsonData) {
 // monthly total graph
 
 function build12MonthTotalGraph(jsonData) {
-    var svg = dimple.newSvg("#monthly-total", 350, 250);
+    var svg = dimple.newSvg("#monthly-total", 350, 300);
     var myChart = new dimple.chart(svg, jsonData);
-    myChart.setBounds("10%", "10%", "86%", "75%")
+    myChart.setBounds("10%", "10%", "86%", "70%")
     myChart.addCategoryAxis("x", ["month", "type"]).addOrderRule(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
     myChart.addMeasureAxis("y", "amount");
     myChart.addSeries("type", dimple.plot.bar);
