@@ -80,3 +80,15 @@ they would like to remove. The table and monthly graphs will update automaticall
 On the home page, new users can find a link below the login form to create a new
 account. A username, password, and email address are required to set up an account.
 
+## Technology Used
+
+This app utilizes HTML, CSS, BootStrap, Javascript, JQuery, and Dimple.js (a D3.js framework) for 
+the client-side features.
+
+The server-side utilizes javascript, Node, Express, MongoDB & Mongoose, morgan, body-parser, and cors for Restful API construction. Passport, bcryptjs, jsonwebtoken
+are used for JWT tokenization.
+
+For testing, chai, chai-http, faker, and mocha 
+are used. 
+
+
