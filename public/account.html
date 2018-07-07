@@ -15,9 +15,9 @@
     <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
 </head>
 <body>
-    <header>
+    <header role="banner">
         <img id="logo" src="/ftg-logo.png" alt="The FinTech Guru">
-        <nav>
+        <nav role="navigation">
             <p><a href="#inputs-box">Inputs</a></p>
             <p>|</p>
             <p><a href="#monthly-graph-container">Graphs</a></p>
@@ -27,7 +27,7 @@
             <p><a href="/logout">Sign out</a></p> 
         </nav>
     </header>
-    <main>
+    <main role="main">
         <div id="HL-page">
             <div id="current-mont-div">
                 <label for="month-graph">Month: </label>
@@ -87,37 +87,36 @@
                     </form>
                 </div>
                 <div id="budget-box">
-                        <h2  style = "text-align: center; font-size: 18px; border-bottom: 1px solid lightgray; margin-bottom: 20px; margin-top: 10px;">
-                        Set Monthly Budget</h2>
-                        <form id="shopping-div">
-                            <label for="shopping" class="label-budget">Shopping: </label>
-                            <input type="number" min="0" name="shopping" id="shopping-budget" class="input-budget">  
-                            <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">   
-                        </form>
-                        <form id="housing-div">
-                            <label for="housing" class="label-budget">Housing: </label>
-                            <input type="number" min="0" name="housing" id="housing-budget" class="input-budget"> 
-                            <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">    
-                        </form>
-                        <form id="trans-div">
-                            <label for="transportation" class="label-budget">Transportation: </label>
-                            <input type="number" min="0" name="transportation" id="transportation-budget" class="input-budget">
-                            <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">     
-                        </form>
-                        <form id="healthcare-div">
-                            <label for="healthcare" class="label-budget">Healthcare: </label>
-                            <input type="number" min="0" name="healthcare" id="healthcare-budget" class="input-budget">
-                            <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">     
-                        </form>
-                        <form id="other-div">
-                            <label for="other" class="label-budget">Other: </label>
-                            <input type="number" min="0" name="other" id="other-budget" class="input-budget">
-                            <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">     
-                        </form>   
+                    <h2  style = "text-align: center; font-size: 18px; border-bottom: 1px solid lightgray; margin-bottom: 20px; margin-top: 10px;">
+                    Set Monthly Budget</h2>
+                    <form id="shopping-div">
+                        <label for="shopping" class="label-budget">Shopping: </label>
+                        <input type="number" min="0" name="shopping" id="shopping-budget" class="input-budget">  
+                        <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">   
+                    </form>
+                    <form id="housing-div">
+                        <label for="housing" class="label-budget">Housing: </label>
+                        <input type="number" min="0" name="housing" id="housing-budget" class="input-budget"> 
+                        <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">    
+                    </form>
+                    <form id="trans-div">
+                        <label for="transportation" class="label-budget">Transportation: </label>
+                        <input type="number" min="0" name="transportation" id="transportation-budget" class="input-budget">
+                        <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">     
+                    </form>
+                    <form id="healthcare-div">
+                        <label for="healthcare" class="label-budget">Healthcare: </label>
+                        <input type="number" min="0" name="healthcare" id="healthcare-budget" class="input-budget">
+                        <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">     
+                    </form>
+                    <form id="other-div">
+                        <label for="other" class="label-budget">Other: </label>
+                        <input type="number" min="0" name="other" id="other-budget" class="input-budget">
+                        <input type = "submit" class="btn btn-primary btn-budget" style = "max-width: 100px">     
+                    </form>   
                 </div>
             </div>
             <div id="monthly-graph-container">
-
                 <div id="graph-box" class="graph-box">
                     <h4 class="graph-title">Monthly Actuals vs. Budget</h4>
                     <div id="vs-budget"> 
@@ -161,7 +160,7 @@
             </div>
         </div>
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div>
             <p><a href="#">Privacy</a></p>
             <p><a href="#">Contact</a></p>

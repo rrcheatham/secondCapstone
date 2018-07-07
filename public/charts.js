@@ -1,4 +1,5 @@
 
+//call to expense API for graph and table rendering
 
 function callExpenseAPI(callback) {
     var username = localStorage.getItem('user');
@@ -17,6 +18,8 @@ function callExpenseAPI(callback) {
     $.ajax(settings);
 }
 
+//initial build of graphs and tables triggered when page loads
+
 function intitalGraphBuild(jsonData) {
     setDropDownToCurrMonth();
     buildMonthVsBudget(jsonData.expenses);
@@ -27,6 +30,8 @@ function intitalGraphBuild(jsonData) {
     populateBudgetFields(jsonData.expenses);
 }
 
+//rebuild of monthly graphs and table based on listeners
+
 function rebuildMonthlyGraphs(jsonData) {
     buildMonthVsBudget(jsonData.expenses);
     buildMonthlyPieChart(jsonData.expenses);
@@ -34,6 +39,7 @@ function rebuildMonthlyGraphs(jsonData) {
     populateBudgetFields(jsonData.expenses);
 }
     
+// clears out SVG canvases before rebuilding monthly graphs
 
 function updateMonthlyGraphs() {
     document.getElementById("vs-budget").innerHTML = "";
@@ -41,6 +47,8 @@ function updateMonthlyGraphs() {
     document.getElementById("table-body").innerHTML = "";
     callExpenseAPI(rebuildMonthlyGraphs);
 }
+
+//populates budget fields with amounts based on selected month
 
 function populateBudgetFields(jsonData) {
     var budgetData = dimple.filterData(jsonData, "type", "budget");
@@ -61,12 +69,16 @@ function populateBudgetFields(jsonData) {
     document.getElementById('other-budget').setAttribute('class', other[0].id);
 }
 
+//listener for change to drop down of selected month
+
 function selectMonthListener() {
     var monthSelect = document.getElementById("month-graph");
     monthSelect.onchange = function() {
         updateMonthlyGraphs();
     }
 }
+
+//submits new expenses to expense API 
 
 function sendExpenseToAPI(callback) {
     var username = localStorage.getItem('user');
@@ -92,6 +104,7 @@ function sendExpenseToAPI(callback) {
     $.ajax(settings);
 }
 
+//listener for submission of new expenses
 
 function expenseSubmitListener() {
     $('#expense-form').submit(event => {
@@ -99,6 +112,8 @@ function expenseSubmitListener() {
         sendExpenseToAPI(expenseAdded);
     })
 }
+
+//call back for submission of new expense, clears fields and updates graphs
 
 function expenseAdded() {
     document.getElementById('category').value = '';
@@ -108,6 +123,7 @@ function expenseAdded() {
     updateMonthlyGraphs();
 }
 
+//Submission to API of changes to monthly budget totals
 
 function updateBudgetAPI(id, amt, callback) {
     var formData = {
@@ -123,6 +139,8 @@ function updateBudgetAPI(id, amt, callback) {
     };
     $.ajax(settings);
 }
+
+//Listeners for each budget category submit
 
 function budgetShoppingSubmitListener() {
     var id = document.getElementById('shopping-budget').getAttribute('class');
@@ -169,10 +187,14 @@ function budgetOtherSubmitListener() {
     })
 }
 
+//callback for submission of updated budgets
+
 function sucessfulBudgetUpdate() {
     window.alert('Budget Submitted');
     updateMonthlyGraphs();
 }
+
+//call to API for deletion of actual from detailed table
 
 function deleteActualAPI(id, callback) {
     var settings = {
@@ -184,6 +206,8 @@ function deleteActualAPI(id, callback) {
     }
     $.ajax(settings);
 }
+
+//sets drop down to current month called as part of intial graph build
 
 function setDropDownToCurrMonth() {
     const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -229,10 +253,9 @@ function build12MonthGraph(jsonData) {
 
     var svg = dimple.newSvg("#monthly-graph", 350, 300);
     let data = dimple.filterData(jsonData, "type", "actual");
-     // Get a unique list of dates
+
         var months = dimple.getUniqueValues(data, "month");
 
-    // Set the bounds for the charts
         var row = 0,
             col = 0,
             top = 15,
@@ -242,23 +265,12 @@ function build12MonthGraph(jsonData) {
             height = 55,
             totalWidth = parseFloat(svg.attr("width"));
 
-    // Pick the latest 12 dates
-    // months = months.slice(months.length - 12);
-
-    // Draw a chart for each of the 12 dates
         months.forEach(function (month) {
-        
-        // Wrap to the row above
             if (left + ((col + 1) * (width + inMarg)) > totalWidth) {
                 row += 1;
                 col = 0;
             }
-        
-        // Filter for the month in the iteration
             var chartData = dimple.filterData(data, "month", month);
-    
-            
-        // Use d3 to draw a text label for the month
             svg
                 .append("text")
                     .attr("x", left + (col * (width + inMarg)) + (width / 2))
@@ -268,46 +280,27 @@ function build12MonthGraph(jsonData) {
                     .style("font-size", "28px")
                     .style("opacity", 0.5)
                     .text(chartData[0].month.substring(0, 3));
-            
-            // Create a chart at the correct point in the trellis
             var myChart = new dimple.chart(svg, chartData);
             myChart.setBounds(
                 left + (col * (width + inMarg)),
                 top + (row * (height + inMarg)),
                 width,
                 height);
-            
-            // Add x and fix ordering so that all charts are the same
             var x = myChart.addCategoryAxis("x", "category");
             x.addOrderRule(["shopping", "housing", "transportation", "healthcare", "other"]);
-            
-            // Add y and fix scale so that all charts are the same
             var y = myChart.addMeasureAxis("y", "amount");
             y.overrideMax = 1500;
             
-            // Draw the bars.  Passing null here would draw all bars with
-            // the same color.  Passing owner second colors by owner, which
-            // is normally bad practice in a bar chart but works in a trellis.
-            // Month is only passed here so that it shows in the tooltip.
             myChart.addSeries(["Month", "category"], dimple.plot.bar);
-
-            // Draw the chart
             myChart.draw();
-
-            // Once drawn we can access the shapes
-            // If this is not in the first column remove the y text
             if (col > 0) {
                 y.shapes.selectAll("text").remove();
             }
-            // If this is not in the last row remove the x text
             if (row < 2) {
                 x.shapes.selectAll("text").remove();
             }
-            // Remove the axis labels
             y.titleShape.remove();
             x.titleShape.remove();
-
-            // Move to the next column
             col += 1;
 
         }, this);
