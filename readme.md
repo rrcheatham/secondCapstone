@@ -1,5 +1,7 @@
 # The Fintech Guru Expense Tracker
 
+![Screenshot of account page](screenshot.png)
+
 *website: https://salty-sands-51300.herokuapp.com/*
 
 This is a simple expense tracker that gives users the ability
