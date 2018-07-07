@@ -23,12 +23,16 @@ There are 5 main categories of expenses that are tracked:
 
 **Shopping** - all descretionary spending including food, drink, 
 clothes, and entertainment
+
 **Housing** - all expenses related to housing including rent/mortgage, 
 property taxes, furniture, services, and cleaning supplies
+
 **Transportation** - all expenses related to commuting and travel including
 car payments/purchases, public transportation, flights and hotels
+
 **Healthcare** - all expense related to health care including doctors visits, 
 prescription and OTC drugs, first aid supplies, and insurance
+
 **Other** - all other expenses including cash contributions and donations
 
 To add a new expense, users simply enter the amount and select both the category and month 
@@ -49,10 +53,13 @@ There are four total visualizations to help users track their spending:
 
 **Monthly Actuals vs. Budget** - shows total actuals and budget by category
 for the month selected at the top of the page
+
 **Monthly Actuals By Category** - a pie chart showing the breakdown of expenses
 by category for the month selected.
+
 **Full Year Expenses By Category** - a series of charts showing expenses by 
 category for each month of the year.
+
 **Full Year Actual vs. Budget** - a chart showing total expenses vs total 
 budget for each month of the year
 
