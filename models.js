@@ -18,7 +18,7 @@ expenseDataSchema.methods.serialize = function() {
     };
 };
 
-const userSchema = mongoose.Schema({
+const userDataSchema = mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true},
@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
     city: {type: String}
 });
 
-userSchema.methods.serialize = function() {
+userDataSchema.methods.serialize = function() {
     return {
         username: this.username,
         email: this.email,
@@ -42,7 +42,7 @@ userSchema.methods.serialize = function() {
 };
 
 const ExpenseData = mongoose.model('ExpenseData', expenseDataSchema, 'expenses');
-const UserData = mongoose.model('UserData', userSchema, 'users');
+const UserData = mongoose.model('UserData', userDataSchema, 'users');
 
 module.exports = { ExpenseData, UserData };
 

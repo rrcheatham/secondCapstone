@@ -4,6 +4,16 @@ html {
 
 body {
     background-color: #D7D7D7;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #logo {
@@ -13,9 +23,10 @@ body {
 
 header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
     padding-top: 10px;
+    flex-wrap: wrap;
 }
 
 nav {
@@ -24,7 +35,7 @@ nav {
 }
 
 nav p {
-    font-size: 22px;
+    font-size: 14px;
     font-weight: bold;
     padding: 20px 10px 0px 0px;
 }
@@ -32,13 +43,14 @@ nav p {
 #HL-page {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #inputs-box {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 1200px;;
+    flex-direction: column;
+    align-items: center;
 }
 
 #expense-box,
@@ -49,19 +61,14 @@ nav p {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    width: 455px; 
-}
-
-#expense-box {
-    margin-left: 10px;
-}
-
-#budget-box {
-    margin-right: 10px;
+    width: 350px; 
+    font-size: 12px;
+    height: 280px;
 }
 
 legend {
     text-align: center;
+    font-size: 18px;
 }
 
 .btn {
@@ -69,15 +76,31 @@ legend {
     margin-top: 5px;
 }
 
-#graph-container {
-    margin-top: 40px;
+.btn-budget {
+    height: 25px;
+    font-size: 12px;
+    margin-top: 0px;
+    width: 65px;
+    justify-self: right;
+    padding-top: 4px;
 }
 
-#graph-box {
+.label-budget {
+    width: 100px;
+    margin-right: 5px;
+}
+
+#monthly-graph-container {
     margin-top: 40px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fullyear-graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #monthly-box {
@@ -96,10 +119,77 @@ legend {
 #date-div {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: top;
     margin-top: 5px;
+    max-height: 25px;
+}
+
+#amt-div,
+#cat-div,
+#date-div {
+    justify-content: space-between;
 }
 
 #table-box {
-    max-width: 1200px;
+    width: 100%;
+}
+
+#shopping-budget,
+#housing-budget,
+#transportation-budget,
+#healthcare-budget,
+#other-budget {
+    width: 100px;
+    text-align: right; 
+    justify-self: right;
+}
+
+.graph-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-title {
+    background-color: #337ab7;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+footer {
+    background-color: darkgray;
+    margin-top: 150px;
+    padding: 20px;
+    text-align: right;
+}
+
+footer p {
+    margin: 0px;
+}
+
+
+@media screen and (min-width: 768px) {
+    #inputs-box {
+        flex-direction: row;
+    }
+
+    #expense-box {
+        margin-right: 10px;
+    }
+
+    #budget-box {
+        margin-left: 10px;
+    }
+
+    #monthly-graph-container {
+        flex-direction: row;
+    }
+
+    #fullyear-graph-container {
+        flex-direction: row;
+    }
+
+    nav p{
+        font-size: 16px;
+    }
 }

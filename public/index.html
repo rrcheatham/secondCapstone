@@ -9,14 +9,17 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
         <img id="logo" src="/ftg-logo.png" alt="The FinTech Guru">
         <nav>
-            <p>Home |</p>
-            <p>Blog |</p>
-            <p>About</p>
+            <p><a target="_blank" href="http://thebargainbinguru.com">Home</a></p>
+            <p>|</p>
+            <p><a target="_blank" href="http://thebargainbinguru.com">Blog</a></p>
+            <p>|</p>
+            <p><a target="_blank" href="http://thebargainbinguru.com/about">About</a></p>
         </nav>
     </header>
     <main>
@@ -24,11 +27,10 @@
         <form id="login-form" action="submit">
             <legend>Sign into your account</legend>
             <label for="username">Username: </label>
-            <input type="text">
+            <input type="text" id="username" name="username">
             <label for="password">Password: </label>
-            <input type="text">
-            <button id="submit" class="btn btn-primary">Submit</button>
-            <p id="reset-link">Forgot your password? Reset it <a href="/reset.html">here</a>.</p>
+            <input type="password" id="password" name="password">
+            <input type="submit" id="submit" value="Log In" class="btn btn-primary">
         </form>
         <div id="sign-up-links">
             <p>Don't have an account? <a href="/sign-up.html">Sign-up for free.</a></p>
@@ -41,10 +43,11 @@
     </main>
     <footer>
         <div>
-            <p>Privacy</p>
-            <p>Contact</p>
+            <p><a href="#">Privacy</a></p>
+            <p><a href="#">Contact</a></p>
             <p>&copy; The FinTech Guru 2018</p>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 </html>
