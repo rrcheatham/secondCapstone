@@ -6,7 +6,7 @@ This is a simple expense tracker that gives users the ability
 to track, manage, and target their monthly expenses over the course
 of a full year.
 
-Upon logging in (username: user1, password: b1234567890), a user has
+Upon logging in **(username: user1, password: b1234567890)**, a user has
 access to an inputs section, a graphs section, and a detailed section.
 
 ## Inputs
@@ -21,15 +21,15 @@ At the top of the page are three inputs:
 
 There are 5 main categories of expenses that are tracked:
 
-    1. **Shopping** - all descretionary spending including food, drink, 
+    **Shopping** - all descretionary spending including food, drink, 
     clothes, and entertainment
-    2. **Housing** - all expenses related to housing including rent/mortgage, 
+    **Housing** - all expenses related to housing including rent/mortgage, 
     property taxes, furniture, services, and cleaning supplies
-    3. **Transportation** - all expenses related to commuting and travel including
+    **Transportation** - all expenses related to commuting and travel including
     car payments/purchases, public transportation, flights and hotels
-    4. **Healthcare** - all expense related to health care including doctors visits, 
+    **Healthcare** - all expense related to health care including doctors visits, 
     prescription and OTC drugs, first aid supplies, and insurance
-    5. **Other** - all other expenses including cash contributions and donations
+    **Other** - all other expenses including cash contributions and donations
 
 To add a new expense, users simply enter the amount and select both the category and month 
 from the drop down menus before clicking submit. The account summary will automatically 
@@ -47,13 +47,13 @@ refresh to show the new data.
 
 There are four total visualizations to help users track their spending:
 
-    1. **Monthly Actuals vs. Budget** - shows total actuals and budget by category
+    **Monthly Actuals vs. Budget** - shows total actuals and budget by category
     for the month selected at the top of the page
-    2. **Monthly Actuals By Category** - a pie chart showing the breakdown of expenses
+    **Monthly Actuals By Category** - a pie chart showing the breakdown of expenses
     by category for the month selected.
-    3. **Full Year Expenses By Category** - a series of charts showing expenses by 
+    **Full Year Expenses By Category** - a series of charts showing expenses by 
     category for each month of the year.
-    4. **Full Year Actual vs. Budget** - a chart showing total expenses vs total 
+    **Full Year Actual vs. Budget** - a chart showing total expenses vs total 
     budget for each month of the year
 
 ## Detailed Table
