@@ -1,5 +1,7 @@
 
-function loginToAccount(callback) {
+//call to users API for login 
+
+function loginToAccount(callback, callback2) {
     var formData = {
         username: $('#username').val(),
         password: $('#password').val()
@@ -12,10 +14,13 @@ function loginToAccount(callback) {
         data: formData,
        // dataType: 'json',
         type: 'POST',
-        success: callback
+        success: callback,
+        failure: callback2
     };
     $.ajax(settings);
 }
+
+//delete 
 
 function accessAccount() {
     $.ajax({
@@ -26,14 +31,21 @@ function accessAccount() {
     });
 }
 
+//callback for successfull login accessing account page
+
 function sucessfullLogin(data) {
-    console.log('client side log-in');
-    console.log(data);
     localStorage.setItem('token', data.authToken);
-    console.log(localStorage.getItem('token'));
     top.window.location.href = "/account.html";
-    //accessAccount();
 }
+
+//callback for unsucessfull login alerting user of error
+
+function unsucessfullLogin(data) {
+    var message = "Sorry there was a problem with your login " + data.body;
+    window.alert(message);
+}
+
+//listener for login form submission
 
 function watchForSubmit() {
     $('#login-form').submit((event) => {
