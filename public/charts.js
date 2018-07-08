@@ -51,6 +51,11 @@ function updateMonthlyGraphs() {
 //populates budget fields with amounts based on selected month
 
 function populateBudgetFields(jsonData) {
+    document.getElementById('shopping-budget').value = 0;
+    document.getElementById('housing-budget').value = 0;
+    document.getElementById('transportation-budget').value = 0;
+    document.getElementById('healthcare-budget').value = 0;
+    document.getElementById('other-budget').value = 0;
     var budgetData = dimple.filterData(jsonData, "type", "budget");
     var shopping = dimple.filterData(budgetData, "category", "shopping");
     document.getElementById('shopping-budget').value = shopping[0].amount;
