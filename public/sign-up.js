@@ -25,7 +25,7 @@ function showSuccessView() {
 }
 
 function unsuccessfullPost(err) {
-    var message = "There was a problem with your form: " + err;
+    var message = "There was a problem with your form: " + err.location + " " + err.message;
     window.alert(message);
 }
 
