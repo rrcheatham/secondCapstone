@@ -127,6 +127,7 @@ function expenseAdded() {
 
 function updateBudgetAPI(id, amt, callback) {
     var formData = {
+        id: id,
         amt: amt
     };
     var settings = {
@@ -152,37 +153,37 @@ function budgetShoppingSubmitListener() {
 }
 
 function budgetHousingSubmitListener() {
-    var id = document.getElementById('housing-budget').getAttribute('class');
-    var amt = document.getElementById('housing-budget').value;
     $('#housing-div').submit( event => {
         event.preventDefault();
+        var id = document.getElementById('housing-budget').getAttribute('class');
+        var amt = document.getElementById('housing-budget').value;
         updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
     })
 }
 
 function budgetTransportationSubmitListener() {
-    var id = document.getElementById('transportation-budget').getAttribute('class');
-    var amt = document.getElementById('transportation-budget').value;
     $('#transportation-div').submit( event => {
         event.preventDefault();
+        var id = document.getElementById('transportation-budget').getAttribute('class');
+        var amt = document.getElementById('transportation-budget').value;
         updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
     })
 }
 
 function budgetHealthcareSubmitListener() {
-    var id = document.getElementById('healthcare-budget').getAttribute('class');
-    var amt = document.getElementById('healthcare-budget').value;
     $('#healthcare-div').submit( event => {
         event.preventDefault();
+        var id = document.getElementById('healthcare-budget').getAttribute('class');
+        var amt = document.getElementById('healthcare-budget').value;
         updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
     })
 }
 
 function budgetOtherSubmitListener() {
-    var id = document.getElementById('other-budget').getAttribute('class');
-    var amt = document.getElementById('other-budget').value;
     $('#other-div').submit( event => {
         event.preventDefault();
+        var id = document.getElementById('other-budget').getAttribute('class');
+        var amt = document.getElementById('other-budget').value;
         updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
     })
 }
