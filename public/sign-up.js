@@ -24,8 +24,8 @@ function showSuccessView() {
     $('#signup-form').addClass('hidden');
 }
 
-function unsuccessfullPost(err) {
-    var message = "There was a problem with your form: " + err.location + " " + err.message;
+function unsuccessfullPost(request, status, error) {
+    var message = "There was a problem with your form: " + request.responseText;
     window.alert(message);
 }
 
