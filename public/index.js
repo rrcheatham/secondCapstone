@@ -41,7 +41,7 @@ function sucessfullLogin(data) {
 //callback for unsucessfull login alerting user of error
 
 function unsucessfullLogin(data) {
-    var message = " Please check your username and password and try again";
+    var message = "Please check your username and password and try again";
     window.alert(message);
 }
 
