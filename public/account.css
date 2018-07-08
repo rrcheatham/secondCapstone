@@ -85,10 +85,14 @@ legend {
     padding-top: 4px;
 }
 
-.label-budget {
+#label-shopping,
+#label-housing,
+#label-transportation,
+#label-healthcare,
+#label-other {
     width: 100px;
     margin-right: 5px;
-}
+} 
 
 #monthly-graph-container {
     margin-top: 40px;
