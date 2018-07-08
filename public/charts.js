@@ -128,7 +128,7 @@ function expenseAdded() {
 function updateBudgetAPI(id, amt, callback) {
     var formData = {
         id: id,
-        amt: amt
+        amount: amt
     };
     var settings = {
         url: `/expenses/${id}`,
