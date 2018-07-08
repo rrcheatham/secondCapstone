@@ -15,7 +15,7 @@ function loginToAccount(callback, callback2) {
        // dataType: 'json',
         type: 'POST',
         success: callback,
-        failure: callback2
+        error: callback2
     };
     $.ajax(settings);
 }

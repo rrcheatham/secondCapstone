@@ -1,5 +1,5 @@
 
-function createNewUser(callback) {
+function createNewUser(callback, callback2) {
     var formData = { 
         username: $('#username').val(), 
         password: $('#password').val(),  
@@ -13,6 +13,7 @@ function createNewUser(callback) {
         url: '/api/users',
         data: formData,
         success: callback,
+        error: callback2,
         dataType: 'json',
         contentType: 'application/json'
     });
@@ -23,11 +24,15 @@ function showSuccessView() {
     $('#signup-form').addClass('hidden');
 }
 
+function unsuccessfullPost(err) {
+    var message = "There was a problem with your form: " + err;
+    window.alert(message);
+}
 
 function watchForSubmit() {
     $('#signup-form').submit((event) => {
         event.preventDefault();
-        createNewUser(showSuccessView());
+        createNewUser(showSuccessView, unsuccessfullPost);
     }); 
 }
 
