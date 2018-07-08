@@ -12,10 +12,10 @@ function createNewUser(callback, callback2) {
         method: 'POST',
         url: '/api/users',
         data: formData,
-        success: callback,
-        error: callback2,
         dataType: 'json',
-        contentType: 'application/json'
+        contentType: 'application/json',
+        success: callback,
+        error: callback2
     });
 }
 

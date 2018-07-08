@@ -74,6 +74,10 @@ footer {
     font-size: 20px;
 }
 
+form p {
+    margin-top: 10px;
+}
+
 footer {
     background-color: darkgray;
     margin-top: 150px;
