@@ -41,7 +41,7 @@ function sucessfullLogin(data) {
 //callback for unsucessfull login alerting user of error
 
 function unsucessfullLogin(data) {
-    var message = "Sorry there was a problem with your login " + data.body;
+    var message = data.body + " Please check your username and password and try again";
     window.alert(message);
 }
 
@@ -50,7 +50,7 @@ function unsucessfullLogin(data) {
 function watchForSubmit() {
     $('#login-form').submit((event) => {
         event.preventDefault();
-        loginToAccount(sucessfullLogin);
+        loginToAccount(sucessfullLogin, unsucessfullLogin);
     }); 
 }
 

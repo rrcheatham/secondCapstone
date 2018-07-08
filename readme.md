@@ -1,6 +1,6 @@
 # The Fintech Guru Expense Tracker
 
-![Screenshot of account page](screenshot.png)
+![Screenshot of account page](https://github.com/rrcheatham/secondCapstone/blob/master/screenshot.PNG)
 
 *website: https://salty-sands-51300.herokuapp.com/*
 
