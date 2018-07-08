@@ -143,10 +143,10 @@ function updateBudgetAPI(id, amt, callback) {
 //Listeners for each budget category submit
 
 function budgetShoppingSubmitListener() {
-    var id = document.getElementById('shopping-budget').getAttribute('class');
-    var amt = document.getElementById('shopping-budget').value;
     $('#shopping-div').submit( event => {
         event.preventDefault();
+        var id = document.getElementById('shopping-budget').getAttribute('class');
+        var amt = document.getElementById('shopping-budget').value;
         updateBudgetAPI(id, amt, sucessfulBudgetUpdate);
     })
 }
