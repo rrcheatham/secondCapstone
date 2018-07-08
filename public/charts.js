@@ -56,7 +56,7 @@ function populateBudgetFields(jsonData) {
     document.getElementById('transportation-budget').value = 0;
     document.getElementById('healthcare-budget').value = 0;
     document.getElementById('other-budget').value = 0;
-    var monthSelect = document.getElementById("month-graph");
+    var monthSelect = document.getElementById("month-graph").value;
     var budgetData = dimple.filterData(jsonData, "type", "budget");
     budgetData = dimple.filterData(budgetData, "month", monthSelect);
     var shopping = dimple.filterData(budgetData, "category", "shopping");
