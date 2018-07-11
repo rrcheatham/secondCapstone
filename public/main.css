@@ -41,7 +41,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+}
+
+#features {
+    font-size: 15px;
+    line-height: 1.75em;
 }
  #login-form {
      max-width: 400px;
@@ -55,7 +59,7 @@ main {
  }
 
  #sign-up-links {
-     margin-top: 20px;
+     margin-top: 10px;
  }
 
  label,

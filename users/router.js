@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 
 const {User} = require('./models');
 
+const {ExpenseData} = require('../models');
+const {createDefaultBudget} = require('./defaultBudget');
+
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
@@ -111,6 +114,8 @@ router.post('/', jsonParser, (req, res) => {
             });
         })
         .then(user => {
+            //creates default budget of 500 for each category for each month
+            ExpenseData.insertMany(createDefaultBudget(username));
             return res.status(201).json(user.serialize());
         })
         .catch(err => {

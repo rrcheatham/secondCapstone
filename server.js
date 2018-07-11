@@ -13,6 +13,8 @@ mongoose.Promise = global.Promise;
 const { PORT, DATABASE_URL } = require('./config');
 const { ExpenseData, UserData } = require('./models');
 
+const { createDefaultBudget } = require('./users/defaultBudget');
+
 const app = express();
 
 app.use(express.json());
@@ -38,6 +40,11 @@ app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
+
+/* app.get('/expenses/budget', (req, res) => {
+    var username = req.query.username;
+    ExpenseData.insertMany(createDefaultBudget(username));
+}); */
 
 app.get('/expenses', jwtAuth, (req, res) => {
     ExpenseData

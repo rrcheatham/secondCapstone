@@ -14,16 +14,17 @@
 <body>
     <header role="banner">
         <img id="logo" src="/ftg-logo.png" alt="The FinTech Guru">
-        <nav role="navigation">
-            <p><a target="_blank" href="http://thebargainbinguru.com">Home</a></p>
-            <p>|</p>
-            <p><a target="_blank" href="http://thebargainbinguru.com">Blog</a></p>
-            <p>|</p>
-            <p><a target="_blank" href="http://thebargainbinguru.com/about">About</a></p>
-        </nav>
     </header>
     <main role="main">
         <h1>The FinTech Guru Expense Tracker</h1>
+        <ul id="features">
+            <li><span style="font-weight: bold">Track</span> your monthly expenses</li>
+            <li><span style="font-weight: bold">Create</span> budgets to keep your expenses in check</li>
+            <li><span style="font-weight: bold">Gain</span> insights into your spending habits</li>
+        </ul>
+        <div id="sign-up-links">
+            <p>Don't have an account? <a href="/sign-up.html" style="font-weight: bold">Sign-up for free.</a></p>
+        </div>
         <form id="login-form" action="submit">
             <legend>Sign into your account</legend>
             <label for="username">Username: </label>
@@ -32,14 +33,6 @@
             <input type="password" id="password" name="password">
             <input type="submit" id="submit" value="Log In" class="btn btn-primary">
         </form>
-        <div id="sign-up-links">
-            <p>Don't have an account? <a href="/sign-up.html">Sign-up for free.</a></p>
-            <ul>
-                <li>Track your monthly expenses</li>
-                <li>Create budgets to keep your expneses in check</li>
-                <li>Gain insights into your spending habits</li>
-            </ul>
-        </div>
     </main>
     <footer role="contentinfo">
         <div>

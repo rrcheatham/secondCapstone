@@ -32,20 +32,24 @@ function intitalGraphBuild(jsonData) {
 
 //rebuild of monthly graphs and table based on listeners
 
-function rebuildMonthlyGraphs(jsonData) {
+function rebuildGraphs(jsonData) {
     buildMonthVsBudget(jsonData.expenses);
     buildMonthlyPieChart(jsonData.expenses);
+    build12MonthGraph(jsonData.expenses);
+    build12MonthTotalGraph(jsonData.expenses);
     buildDetailTable(jsonData.expenses);
     populateBudgetFields(jsonData.expenses);
 }
     
 // clears out SVG canvases before rebuilding monthly graphs
 
-function updateMonthlyGraphs() {
+function updateGraphs() {
     document.getElementById("vs-budget").innerHTML = "";
     document.getElementById("category-chart").innerHTML = "";
+    document.getElementById("monthly-graph").innerHTML = "";
+    document.getElementById("monthly-total").innerHTML = "";
     document.getElementById("table-body").innerHTML = "";
-    callExpenseAPI(rebuildMonthlyGraphs);
+    callExpenseAPI(rebuildGraphs);
 }
 
 //populates budget fields with amounts based on selected month
@@ -81,7 +85,7 @@ function populateBudgetFields(jsonData) {
 function selectMonthListener() {
     var monthSelect = document.getElementById("month-graph");
     monthSelect.onchange = function() {
-        updateMonthlyGraphs();
+        updateGraphs();
     }
 }
 
@@ -127,7 +131,7 @@ function expenseAdded() {
     document.getElementById('month-expense').value = 'Month...'; 
     document.getElementById('expense-amt').value = '';
     window.alert('Expense submitted');
-    updateMonthlyGraphs();
+    updateGraphs();
 }
 
 //Submission to API of changes to monthly budget totals
@@ -169,7 +173,7 @@ function budgetHousingSubmitListener() {
 }
 
 function budgetTransportationSubmitListener() {
-    $('#transportation-div').submit( event => {
+    $('#trans-div').submit( event => {
         event.preventDefault();
         var id = document.getElementById('transportation-budget').getAttribute('class');
         var amt = document.getElementById('transportation-budget').value;
@@ -199,7 +203,7 @@ function budgetOtherSubmitListener() {
 
 function sucessfulBudgetUpdate() {
     window.alert('Budget Submitted');
-    updateMonthlyGraphs();
+    updateGraphs();
 }
 
 //call to API for deletion of actual from detailed table
@@ -333,6 +337,7 @@ function buildDetailTable(jsonData) {
     var selectedMonth = document.getElementById("month-graph").value;
     $container = $("#details").find("tbody");
     let data = dimple.filterData(jsonData, "month", selectedMonth);
+    data = dimple.filterData(data, "type", "actual");
         for (var i = 0; i < data.length; i++) {
             $container.append(`<tr><td>${data[i].month}</td><td>${data[i].category}</td><td>${data[i].amount}</td><td><button id=
             '${data[i].id}' onClick="deleteActualAPI('${data[i].id}', updateMonthlyGraphs);">Delete</button></td></tr>`)

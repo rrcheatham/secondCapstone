@@ -8,7 +8,7 @@ This is a simple expense tracker that gives users the ability
 to track, manage, and target their monthly expenses over the course
 of a full year.
 
-Upon logging in **(username: user1, password: b1234567890)**, a user has
+Upon logging in **(username: user1, password: b1234567890 - Please enable cookies!)**, a user has
 access to an inputs section, a graphs section, and a detailed section.
 
 ## Inputs
