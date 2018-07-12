@@ -340,7 +340,7 @@ function buildDetailTable(jsonData) {
     data = dimple.filterData(data, "type", "actual");
         for (var i = 0; i < data.length; i++) {
             $container.append(`<tr><td>${data[i].month}</td><td>${data[i].category}</td><td>${data[i].amount}</td><td><button id=
-            '${data[i].id}' onClick="deleteActualAPI('${data[i].id}', updateMonthlyGraphs);">Delete</button></td></tr>`)
+            '${data[i].id}' onClick="deleteActualAPI('${data[i].id}', updateGraphs);">Delete</button></td></tr>`)
         ;}   
 }
 
